@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Edit Blog</title>
+  <link rel="stylesheet" href="/css/iss.css">
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <%= heading %>
+    </h1>
+    <% if (locals.post) { %>
+      <form id="editForm" method="post" action="/api/posts/<%=post.id%>">
+        <input type="text" name="title" value="<%=post.title %>">
+        <textarea name="contents" rows="10"><%=post.contents %></textarea>
+        <label>Select Task Status</label>
+        <select name="status">
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+        </select>
+        <!-- <input type="text" name="author" value="<%=post.status %>"> -->
+        <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+      </form>
+      <% } else {%>
+        <form id="newPostForm" method="post" action="/new/posts">
+          <input type="text" name="title" placeholder="Title" required>
+          <textarea name="content" placeholder="Content" required rows="10"></textarea>
+          <label>Select Task Status</label>
+          <select name="status">
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+            </select>
+          <button class="full-width" type="submit">
+            <%= submit %>
+          </button>
+        </form>
+        <% } %>
+  </div>
+</body>
+</html>
